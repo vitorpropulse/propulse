@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serviços - Propulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      background-color: #1c1c1c;
+      color: #fff;
+    }
+    .tabs {
+      display: flex;
+      background-color: #8829d9;
+    }
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      border-right: 1px solid #fff;
+      font-size: 18px;
+    }
+    .tab:last-child {
+      border-right: none;
+    }
+    .tab.active {
+      background-color: #1c1c1c;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+    .content {
+      display: none;
+      background-color: #1c1c1c;
+      border-top: 4px solid #8829d9;
+      padding: 60px 40px;
+      text-align: left;
+      animation: fadeIn 0.5s ease-in-out;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+    .content.active {
+      display: block;
+    }
+    .icon img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+    }
+    .content h2 {
+      font-size: 34px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .content p {
+      font-size: 22px;
+      line-height: 1.7;
+      max-width: 720px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <div class="tab active" onclick="manualSwitch('trafego')">TRÁFEGO PAGO</div>
+    <div class="tab" onclick="manualSwitch('performance')">ASSESSORIA DE PERFORMANCE</div>
+    <div class="tab" onclick="manualSwitch('design')">DESIGNER DIGITAL</div>
+    <div class="tab" onclick="manualSwitch('influencia')">MARKETING DE INFLUÊNCIA</div>
+    <div class="tab" onclick="manualSwitch('bi')">BUSINESS INTELLIGENCE</div>
+    <div class="tab" onclick="manualSwitch('crm')">CRM</div>
+  </div>
+
+  <div id="trafego" class="content active">
+    <div class="icon"><img src="icons/trafego.svg" alt="Tráfego Pago"></div>
+    <h2>TRÁFEGO PAGO</h2>
+    <p>Atraímos clientes qualificados por meio de campanhas estratégicas no Google, Meta, YouTube, TikTok, Pinterest e outras plataformas.</p>
+  </div>
+
+  <div id="performance" class="content">
+    <div class="icon"><img src="icons/performance.svg" alt="Assessoria de Performance"></div>
+    <h2>ASSESSORIA DE PERFORMANCE</h2>
+    <p>Nosso compromisso é entregar sua meta de vendas. Realizamos análises de dados, levantamos hipóteses, fazemos estudos e apresentamos planos de ação para elevar sua taxa de conversão e ticket médio.</p>
+  </div>
+
+  <div id="design" class="content">
+    <div class="icon"><img src="icons/design.svg" alt="Design Digital"></div>
+    <h2>DESIGN DIGITAL</h2>
+    <p>Criação de identidade visual e peças publicitárias que aumentam o engajamento e as vendas.</p>
+  </div>
+
+  <div id="influencia" class="content">
+    <div class="icon"><img src="icons/influencia.svg" alt="Marketing de Influência"></div>
+    <h2>MARKETING DE INFLUÊNCIA</h2>
+    <p>Conectamos sua marca a influenciadores e creators que geram credibilidade, engajamento e impulsionam suas campanhas e vendas no e-commerce.</p>
+  </div>
+
+  <div id="bi" class="content">
+    <div class="icon"><img src="icons/bi.svg" alt="Dashboard"></div>
+    <h2>DASHBOARD</h2>
+    <p>Transformamos dados em ações estratégicas! Tenha uma gestão visual dos indicadores de desempenho que alavancam sua loja.</p>
+  </div>
+
+  <div id="crm" class="content">
+    <div class="icon"><img src="icons/crm.svg" alt="CRM"></div>
+    <h2>CRM E ESTRATÉGIAS DE RELACIONAMENTO</h2>
+    <p>Fidelizamos clientes e aumentamos o LTV com estratégias de e-mail, SMS e WhatsApp Marketing.</p>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.content');
+    const tabIds = ['trafego', 'performance', 'design', 'influencia', 'bi', 'crm'];
+    let currentIndex = 0;
+    let autoSwitch = true;
+
+    function showTab(tabId) {
+      tabs.forEach(tab => tab.classList.remove('active'));
+      contents.forEach(content => content.classList.remove('active'));
+      document.querySelector(`[onclick*="${tabId}"]`).classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function switchTabAuto() {
+      if (!autoSwitch) return;
+      currentIndex = (currentIndex + 1) % tabIds.length;
+      showTab(tabIds[currentIndex]);
+    }
+
+    function manualSwitch(tabId) {
+      autoSwitch = false;
+      showTab(tabId);
+    }
+
+    setInterval(switchTabAuto, 5000);
+  </script>
+</body>
+</html>
